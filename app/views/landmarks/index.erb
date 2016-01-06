@@ -6,9 +6,9 @@
     <th>Year Completed</th>
   </tr>
     <%@landmarks.each do |landmark|%>
-    <tr>
-      <td><a href="/landmarks/<%=landmark.id%>"> <%=landmark.name%> </a></td>
-      <td> <%=landmark.year_completed%></td>
-    </tr>
+      <tr>
+        <td><a href="/landmarks/<%=landmark.id%>"> <%=landmark.name%> </a></td>
+        <td> <%=landmark.year_completed%></td>
+      </tr>
     <%end%>
 </table>
