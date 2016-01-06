@@ -1,3 +1,4 @@
+require 'pry'
 class LandmarksController < ApplicationController
   get '/landmarks/new' do
     erb :"landmarks/new"
@@ -5,7 +6,7 @@ class LandmarksController < ApplicationController
 
   post "/landmarks" do
     @new_landmark = Landmark.create(name: params["landmark"]["name"], year_completed: params["landmark"]["year_completed"])
-    redirect to "/landmarks/:id"
+    redirect to "/landmarks/#{@new_landmark.id}"
   end
 
   get "/landmarks" do
@@ -15,7 +16,7 @@ class LandmarksController < ApplicationController
 
   get "/landmarks/:id" do 
     @landmark = Landmark.find(params[:id])
-    erb :show
+    erb :"landmarks/show"
   end
 
 end
