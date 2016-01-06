@@ -9,8 +9,13 @@ class LandmarksController < ApplicationController
   end
 
   get "/landmarks" do
-    @landmarks = Landmarks.all
+    @landmarks = Landmark.all
     erb :"landmarks/index"
+  end
+
+  get "/landmarks/:id" do 
+    @landmark = Landmark.find(params[:id])
+    erb :show
   end
 
 end
