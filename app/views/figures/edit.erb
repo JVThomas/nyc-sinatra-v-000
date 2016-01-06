@@ -1,0 +1,51 @@
+<h1>Edit a Figure</h1>
+<br>
+<form method="post" action = "/figures/<%=@figure.id%>">
+  <h2>Figure Name: <input type = "text" name="figure[name]" id="figure_name" value="<%=@figure.name%>"></h2>
+  <br>
+  
+  <% if !!@landmarks%>
+    <table>
+      <tr>
+        <th>Landmarks</th>
+      </tr>
+      
+      <%@landmarks.each do |landmark|%>
+        <tr>
+          <td><%=landmark.name%><input type="checkbox" name ="figure[landmark_ids][]" id ="landmark_<%=landmark.id%>" placeholder = "Landmark" value ="<%=landmark.id%>"
+            <%if @figure.landmarks.include?(landmark)%>
+              checked
+            <%end%>
+            ></td>
+        </tr>
+      <%end%>
+    
+    </table>
+  <%end%>
+
+  <br>
+
+  <% if !!@titles%>
+    <table>
+      <tr>
+        <th>Titles</th>
+      </tr>
+      
+      <%@titles.each do |title|%>
+        <tr>
+          <td><%=title.name%><input type="checkbox" name ="figure[title_ids][]" id ="title_<%=title.id%>" placeholder = "Title" value="<%=title.id%>"></td
+            <%if @figure.titles.include?(title)%>
+              checked
+            <%end%>
+        ></tr>
+      <%end%>
+    
+    </table>
+  <%end%>
+
+  <br>
+
+  <h2>New Landmark: <input type = "text" name="landmark[name]" id="new_landmark" placeholder="New Landmark"></h2>
+  <h2>New Title: <input type = "text" name="title[name]" id="new_title" placeholder="New Title"></h2>
+  <input type ="submit" value="Edit Figure"> 
+</form>

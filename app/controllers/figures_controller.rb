@@ -32,7 +32,6 @@ class FiguresController < ApplicationController
     if !params["title"]["name"].empty?
       @new_title = Title.create(name: params["title"]["name"])
       @new_figure.titles << @new_title
-      
     end
 
     @new_figure.save
@@ -51,6 +50,24 @@ class FiguresController < ApplicationController
 
   get "/figures/:id/edit" do
     @figure = Figure.find(params[:id])
+    @titles = Title.all
+    @landmarks = Landmark.all
     erb :"figures/edit"
+  end
+
+  post "/figures/:id" do
+    @figure = Figure.find(params[:id])
+    @figure.name = params["figure"]["name"] if !params["figure"]["name"].empty?
+    if !params["landmark"]["name"].empty?
+      @new_landmark = Landmark.create(name: params["landmark"]["name"])
+      @figure.landmarks << @new_landmark
+    end
+
+    if !params["title"]["name"].empty?
+      @new_title = Title.create(name: params["title"]["name"])
+      @figure.titles << @new_title
+    end
+    @figure.save
+    redirect to "/figures/#{@figure.id}" 
   end
 end
