@@ -32,9 +32,15 @@ class FiguresController < ApplicationController
     if !params["title"]["name"].empty?
       @new_title = Title.create(name: params["title"]["name"])
       @new_figure.titles << @new_title
+      
     end
 
     @new_figure.save
-    redirect to "/figures/#{@new_figure.id}"  
+    redirect to "/figures/#{@new_figure.id}" 
+  end
+
+  get "/figures" do 
+    @figures = Figure.all
+    erb :"figures/index"
   end
 end

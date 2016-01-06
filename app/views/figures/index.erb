@@ -1,0 +1,14 @@
+<h1>Here Are The Figures!</h1>
+<br>
+<table>
+  <tr>
+    <td>Name</td>
+  </tr>
+  <%@figures.each do |figure|%>
+    <tr>
+      <td><a href="/figures/<%=figure.id%>"><%=figure.name%></a></td>
+    </tr>
+  <%end%>
+</table>
+
+
